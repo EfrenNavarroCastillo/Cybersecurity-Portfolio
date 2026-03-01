@@ -32,8 +32,6 @@ The scope of this assessment was limited to:
 - A controlled client device  
 - Local wireless network configuration  
 
-No external networks or third-party systems were involved.
-
 ---
 
 ## Lab Environment
@@ -64,7 +62,7 @@ This methodology follows a simplified penetration testing lifecycle adapted for 
 
 ### 1. Weak Password Configuration
 
-![Configuration Screenshot](images/config-before.png)
+![WhatsApp Image 2026-03-01 at 10 37 16 AM](https://github.com/user-attachments/assets/6b1fe239-f00a-4a3b-a174-af7dc2d47362)
 
 *Observation:*  
 The wireless network was configured using WPA2-PSK with a weak password structure.
@@ -168,4 +166,4 @@ Wireless networks remain a common entry point for attackers, and proactive secur
 ## Author
 
 Efrén Navarro  
-Aspiring Cybersecurity Analyst | Defensive Security Enthusiast
+Aspiring Cybersecurity Analyst and Penetration Tester
