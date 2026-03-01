@@ -24,124 +24,112 @@ The assessment identified weak password practices and insecure configuration set
 
 ---
 
-## Scope
-
-The scope of this assessment was limited to:
-
-- A personal wireless router  
-- A controlled client device  
-- Local wireless network configuration  
-
----
-
 ## Lab Environment
 
 - Kali Linux (Security Testing Environment)  
-- Personal Home Router (WPA2-PSK Configuration)  
+- Personal Home Router (WPA2-PSK Configuration)
 - Laptop Client Device  
-- Private Controlled Network  
+- Private Controlled Network (bikinibottom)
+ 
+---
+
+## Wireless Reconnaissance
+
+As part of the assessment, the wireless environment was passively analyzed in a controlled lab setting to identify encryption protocols and authentication mechanisms in use.
+
+The objective of this phase was to determine:
+
+- Encryption standard (WPA2 / WPA3)
+- Authentication method (PSK)
+- General network security posture
+
+![WhatsApp Image 2026-03-01 at 11 07 15 AM](https://github.com/user-attachments/assets/aafb97e1-3d94-48ee-aed2-564576224535)
+
+All external SSIDs and hardware identifiers have been anonymized.  
+This analysis was conducted strictly within a personal lab environment.
+
+The reconnaissance confirmed that the lab network was configured using *WPA2-PSK*.
 
 ---
 
-## Methodology (High-Level)
+## Technical Insight: WPA2 4-Way Handshake
 
-The following methodology was applied:
+WPA2-PSK authentication relies on a 4-way handshake process that allows both the client device and the access point to verify possession of the pre-shared key without transmitting the password directly.
 
-1. Wireless network reconnaissance  
-2. Encryption protocol identification  
-3. Security configuration analysis  
-4. Password strength evaluation  
-5. Risk assessment  
-6. Implementation of security hardening measures  
+During this exchange:
 
-This methodology follows a simplified penetration testing lifecycle adapted for a controlled lab environment.
+- Cryptographic nonces are generated
+- Session keys are derived
+- Encrypted communication is established using AES
 
+Although the password is never transmitted, the authentication exchange can be passively captured within wireless range.
+
+The image below shows a successful capture of the WPA2 authentication exchange
+![WhatsApp Image 2026-03-01 at 11 21 15 AM](https://github.com/user-attachments/assets/1b8e2e02-afa7-4f7e-b197-aab829a5352a)
+
+This confirms that:
+
+- The access point uses WPA2-PSK
+- The 4-way handshake process was observed
+  
 ---
 
-## Findings
+## Controlled Password Strength Validation
 
-### 1. Weak Password Configuration
+In the controlled lab environment, the authentication exchange was used solely to evaluate password strength resilience.
 
-![WhatsApp Image 2026-03-01 at 10 37 16 AM](https://github.com/user-attachments/assets/6b1fe239-f00a-4a3b-a174-af7dc2d47362)
+This validation demonstrated that weak password structures significantly reduce resistance against offline dictionary-based attempts.
+The image below shows the successful validation of the lab password, confirming insufficient entropy.
+<img width="1570" height="736" alt="image" src="https://github.com/user-attachments/assets/ae6e84bf-201c-46eb-bc5a-a5a9d2f83b93" />
 
-*Observation:*  
-The wireless network was configured using WPA2-PSK with a weak password structure.
-
-*Risk:*  
-Weak passwords increase exposure to dictionary-based attacks or brute-force attempts by attackers within wireless range.
-
-*Severity:* Medium  
-
+All testing was performed exclusively on personally owned infrastructure.
 ---
 
-### 2. WPS Enabled
+## Risk Analysis
 
-![WPS Screenshot](images/wps-enabled.png)
+WPA2-PSK security depends heavily on the entropy of the pre-shared key.
 
-*Observation:*  
-Wi-Fi Protected Setup (WPS) was enabled on the router.
+If a password lacks sufficient complexity:
 
-*Risk:*  
-WPS can introduce additional attack surface and may allow unauthorized access under certain conditions.
+- Captured authentication exchanges may enable offline password testing
+- Attackers within wireless range could potentially recover weak credentials
+- Unauthorized network access could occur
 
-*Severity:* Medium  
-
----
-
-## Risk Impact
-
-If exploited, the identified weaknesses could potentially allow:
-
-- Unauthorized network access  
-- Traffic interception  
-- Lateral movement within the local network  
-- Access to connected devices  
-
-While no exploitation was performed beyond validation in the controlled lab, the configuration presented unnecessary risk exposure.
+*Risk Type:* Weak Authentication  
+*Severity:* Medium–High  
 
 ---
 
 ## Mitigation Implemented
 
-The following security improvements were applied:
+To eliminate the identified risk, the following measures were applied:
 
-- Upgraded encryption configuration (WPA3 where supported)  
-- Implemented a 16+ character randomly generated password  
-- Disabled WPS  
-- Updated router firmware to latest version  
-- Created a segmented guest network  
-- Reviewed and hardened router administrative settings  
+- Replaced weak password with a 16+ character randomized key
+- Upgraded to WPA3 where supported
+- Disabled WPS
+- Reviewed administrative security settings
 
 ---
 
-## Post-Mitigation Validation
+## Post-Mitigation Outcome
 
-![Config After](images/config-after.png)
+After implementing security hardening controls:
 
-After implementing security controls:
-
-- Strong encryption confirmed  
-- Secure password policy enforced  
-- WPS disabled  
-- Firmware updated  
-
-The overall attack surface was significantly reduced.
+- Strong encryption configuration confirmed
+- High-entropy password enforced
+- Reduced exposure to offline password recovery risk
+- Overall wireless attack surface significantly minimized
 
 ---
 
-## Lessons Learned
+## Professional Takeaway
 
-This project reinforced the importance of:
+This assessment reinforced a fundamental cybersecurity principle:
 
-- Strong password policies  
-- Proper wireless encryption standards  
-- Regular firmware updates  
-- Disabling unnecessary services  
-- Conducting periodic security assessments  
+Even when cryptographic protocols are strong, weak password policies can undermine overall system security.
 
-Wireless networks remain a common entry point for attackers, and proactive security configuration is essential in reducing risk exposure.
+Proper configuration, strong entropy, and proactive hardening are essential to maintaining resilient wireless infrastructure.
 
----
 
 ## Skills Demonstrated
 
@@ -151,15 +139,6 @@ Wireless networks remain a common entry point for attackers, and proactive secur
 - Technical Documentation  
 - Analytical Thinking  
 - Defensive Security Mindset  
-
----
-
-## Future Improvements
-
-- Implement centralized logging for wireless events  
-- Deploy network monitoring tools  
-- Simulate detection scenarios in a SOC lab environment  
-- Expand assessment to include internal network segmentation testing  
 
 ---
 
