@@ -45,9 +45,6 @@ The objective of this phase was to determine:
 
 ![WhatsApp Image 2026-03-01 at 11 07 15 AM](https://github.com/user-attachments/assets/aafb97e1-3d94-48ee-aed2-564576224535)
 
-All external SSIDs and hardware identifiers have been anonymized.  
-This analysis was conducted strictly within a personal lab environment.
-
 The reconnaissance confirmed that the lab network was configured using *WPA2-PSK*.
 
 ---
