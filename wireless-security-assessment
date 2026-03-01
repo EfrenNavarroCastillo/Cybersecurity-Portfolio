@@ -1,1 +1,10 @@
-wireless-security-assessment/README.md
+wireless-security-assessment/
+│
+├── README.md
+├── methodology.md
+├── findings.md
+├── mitigation.md
+├── images/
+│   ├── network-diagram.png
+│   ├── config-before.png
+│   └── config-after.png
