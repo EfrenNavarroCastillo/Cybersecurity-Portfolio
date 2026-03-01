@@ -79,7 +79,6 @@ This validation demonstrated that weak password structures significantly reduce 
 The image below shows the successful validation of the lab password, confirming insufficient entropy.
 <img width="1570" height="736" alt="image" src="https://github.com/user-attachments/assets/ae6e84bf-201c-46eb-bc5a-a5a9d2f83b93" />
 
-All testing was performed exclusively on personally owned infrastructure.
 ---
 
 ## Risk Analysis
